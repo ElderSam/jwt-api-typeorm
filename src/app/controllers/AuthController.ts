@@ -39,8 +39,6 @@ class AuthController {
             auxUser,
             token
         });
-        
-
     }
 }
 

@@ -24,8 +24,15 @@ Users;
 https://www.postgresql.org/download/
 
 ## TypeORM
+Documentation: https://typeorm.io/#/
+
 como criar migrations:
 $ yarn typeorm migration:create -n <MIGRATION_NAME> //example of migration name: CreateUsersTable
 
 Executar Migrations:
 $ yarn typeorm migration:run
+
+## JWT (JSON Web Token)
+Used for user authentication
+Documentation: https://jwt.io/
+
