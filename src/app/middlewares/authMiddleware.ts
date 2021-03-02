@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken'
 
+const SECRET = process.env.JWT_SECRET as string;
+
 interface TokenPayload {
     id: string,
     iat: number;
@@ -19,7 +21,7 @@ export default function authMiddleware(
     const token = authorization.replace('Bearer', '').trim();
 
     try {
-        const data = jwt.verify(token, 'secret');
+        const data = jwt.verify(token, SECRET);
         //console.log(data)
 
         const { id } = data as TokenPayload;

@@ -5,6 +5,8 @@ import jwt from 'jsonwebtoken';
 
 import User from '../models/Users';
 
+const SECRET = process.env.JWT_SECRET as string;
+
 class AuthController {
     async authenticate(req: Request, res: Response) {
         const repository = getRepository(User);
@@ -22,7 +24,7 @@ class AuthController {
             return res.sendStatus(401);
         }
 
-        const token = jwt.sign({ id: user.id }, 'secret', { expiresIn: '1d' });
+        const token = jwt.sign({ id: user.id }, SECRET, { expiresIn: '1d' });
         /* the second parameter of sign() is sensitive data,
             so the ideal would be to get it through a dotenv
             or a local file (which does not go to github) in a real application, for security reasons.

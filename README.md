@@ -6,7 +6,13 @@ $ yarn
 ## 2. Configure Database and the `ormconfig.json`
 create a database in Postgres and udpate the `ormconfig.json` file if necessary
 
-## 3. Iniciar o Servidor
+## 3. Configure the Enviroment Variables;
+Create a `.env` file in the root folder and set the PORT and JWT_SECRET, for example;
+    PORT=3000
+    JWT_SECRET=mysecret74598
+
+
+## 4. Iniciar o Servidor
 $ yarn dev
 
 
