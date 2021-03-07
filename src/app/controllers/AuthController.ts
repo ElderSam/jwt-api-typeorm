@@ -3,6 +3,7 @@ import { getRepository } from 'typeorm';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
+import UserInterface from './../utils/UserInterface';
 import User from '../models/Users';
 
 const SECRET = process.env.JWT_SECRET as string;
@@ -32,11 +33,7 @@ class AuthController {
             or a local file (which does not go to github) in a real application, for security reasons.
         */
 
-        interface auxUser {
-            password?: string; // the password can be `undefined`
-        }
-
-        const auxUser: auxUser = user;
+        const auxUser: UserInterface = user;
         delete auxUser.password; // not to send the password to the frontend
 
         return res.json({

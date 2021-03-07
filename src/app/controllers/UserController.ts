@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 
+import UserInterface from './../utils/UserInterface';
 import User from '../models/Users';
 
 class UserController {
@@ -12,6 +13,14 @@ class UserController {
         const repository = getRepository(User);
 
         const list = await repository.find();
+
+        const newList = list.map((user) => {
+            const auxUser: UserInterface = user;
+            delete auxUser.password; // not to send the password to the frontend
+
+            return auxUser;
+        })
+
         return res.send({ listUsers: list });
     }
 
@@ -28,7 +37,10 @@ class UserController {
         const user = repository.create({ email, password });
         await repository.save(user); // seve on Database
 
-        return res.json(user);
+        const auxUser: UserInterface = user;
+        delete auxUser.password; // not to send the password to the frontend
+
+        return res.json(auxUser);
     }
 }
 
