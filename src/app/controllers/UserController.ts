@@ -15,7 +15,7 @@ class UserController {
         const userExists = await repository.findOne({ where: { email } });
         
         if(userExists) { // implementation of the Singleton design pattern
-            return res.sendStatus(409); // conflict
+            return res.status(400).send({ error: 'There is already a user with this email' }); // bad request
         }
 
         const user = repository.create({ email, password });
