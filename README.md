@@ -1,6 +1,6 @@
-# API de autenticação JWT com TypeScript e TypeORM
+# JWT Authentication API with TypeScript e TypeORM
 
-## 1. Instalar dependências
+## 1. Install dependencies
 $ yarn
 
 ## 2. Configure Database and the `ormconfig.json`
@@ -11,34 +11,49 @@ Create a `.env` file in the root folder and set the PORT and JWT_SECRET, for exa
     PORT=3000
     JWT_SECRET=mysecret74598
 
-
-## 4. Iniciar o Servidor
+## 4. Start the Server
 $ yarn dev
 
-
+-----------------
 ## API Rotes
-host: http://localhost
+host: http://localhost:3000
 
 You can use the Insomnia or Postman to see the routes
 
-Users;
-    Create /users (POST)
+### USERS;
+    Create: /users (POST)
+
+    Authenticate: /auth (POST)
+
+    List: /users (GET)
 
 
 ------------------
-## Download PostgreSQL
-https://www.postgresql.org/download/
+# Tools and Libraries used:
 
-## TypeORM
-Documentation: https://typeorm.io/#/
+**body-parser**
+Parses the client's request from JSON into Javascript objects
 
-como criar migrations:
-$ yarn typeorm migration:create -n <MIGRATION_NAME> //example of migration name: CreateUsersTable
-
-Executar Migrations:
-$ yarn typeorm migration:run
-
-## JWT (JSON Web Token)
-Used for user authentication
+**JWT (JSON Web Token)**
+Used for user authentication. Will handle the JWT operations for us
 Documentation: https://jwt.io/
 
+**bcryptjs**
+Help us to hash user passwords
+
+**ts-node-dev**
+Automatically restarts the server when we change any file
+
+**PostgreSQL**
+Relational Database Manager
+Download PostgreSQL: https://www.postgresql.org/download/
+
+**TypeORM**
+To manipulate database
+Documentation: https://typeorm.io/#/
+
+    how to create migrations:
+    $ yarn typeorm migration:create -n <MIGRATION_NAME> //example of migration name: CreateUsersTable
+
+    Run Migrations:
+    $ yarn typeorm migration:run
