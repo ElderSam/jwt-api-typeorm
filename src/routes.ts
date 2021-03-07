@@ -16,4 +16,7 @@ router.post('/auth', AuthController.authenticate);
 // List User (authenticated request passing Token)
 router.get('/users', authMiddleware, UserController.index);
 
+// List All Users (without autorization) - OBS: FOR DEVELOPMENT PURPOSES
+router.get('/listUsers', UserController.listAll);
+
 export default router;

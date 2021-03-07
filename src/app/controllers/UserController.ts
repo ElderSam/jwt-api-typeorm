@@ -8,7 +8,14 @@ class UserController {
         return res.send({ userID: req.userId });
     }
 
-    async store(req: Request, res: Response) {
+    async listAll(req: Request, res: Response) { // list all users
+        const repository = getRepository(User);
+
+        const list = await repository.find();
+        return res.send({ listUsers: list });
+    }
+
+    async store(req: Request, res: Response) { // create new user
         const repository = getRepository(User);
         const { email, password } = req.body;
 
