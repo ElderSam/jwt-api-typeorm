@@ -18,7 +18,8 @@ $ yarn dev
 ## API Rotes
 host: http://localhost:3000
 
-You can use the Insomnia or Postman to see the routes
+You can use the Insomnia to see the routes.
+Open Insomnia, and import the file in `/api_documentation` folder
 
 ### USERS;
     Create: /users (POST)
@@ -38,10 +39,13 @@ Parses the client's request from JSON into Javascript objects
 Used for user authentication. Will handle the JWT operations for us
 Documentation: https://jwt.io/
 
+https://medium.com/qualyteam-engineering/jwt-refresh-token-b79440a239
+
+
 **bcryptjs**
 Help us to hash user passwords
 
-**ts-node-dev**
+**ts-node**
 Automatically restarts the server when we change any file
 
 **PostgreSQL**
@@ -57,3 +61,6 @@ Documentation: https://typeorm.io/#/
 
     Run Migrations:
     $ yarn typeorm migration:run
+
+**reflect-metadata**
+allow some annotations features used with TypeORM
