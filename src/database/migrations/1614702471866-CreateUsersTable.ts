@@ -16,6 +16,11 @@ export class CreateUsersTable1614702471866 implements MigrationInterface {
                     default: 'uuid_generate_v4()',
                 },
                 {
+                    name: 'name',
+                    type: 'varchar',
+                    isUnique: true
+                },
+                {
                     name: 'email',
                     type: 'varchar',
                     isUnique: true
@@ -23,9 +28,14 @@ export class CreateUsersTable1614702471866 implements MigrationInterface {
                 {
                     name: 'password',
                     type: 'varchar'
+                },
+                {
+                    name: 'created_at',
+                    type: 'date',
+                    default: 'now()'
                 }
             ]
-        }));
+        }), true);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

@@ -6,12 +6,15 @@ $ yarn
 ## 2. Configure Database and the `ormconfig.json`
 create a database in Postgres and udpate the `ormconfig.json` file if necessary
 
-## 3. Configure the Enviroment Variables;
+## 3. Run Migrations (Create tables)
+$ yarn typeorm migration:run
+
+## 4. Configure the Enviroment Variables;
 Create a `.env` file in the root folder and set the PORT and JWT_SECRET, for example;
     PORT=3000
     JWT_SECRET=mysecret74598
 
-## 4. Start the Server
+## 5. Start the Server
 $ yarn dev
 
 -----------------
