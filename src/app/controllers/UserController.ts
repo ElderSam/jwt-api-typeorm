@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { getRepository, Repository } from 'typeorm';
+import bcrypt from 'bcryptjs';
 
 import UserInterface from './../utils/UserInterface';
 import User from '../models/Users';
@@ -40,6 +41,40 @@ class UserController {
         delete auxUser.password; // not to send the password to the frontend
 
         return res.json(auxUser);
+    }
+
+    async update(req: Request, res: Response) {
+
+        if(JSON.stringify(req.query) === "{}") // if the Params object is empty
+            return res.status(400).send({ error: 'No params received' })
+
+        const repository = getRepository(User);
+
+        const id = req.userId;
+        const auxUser = req.query;
+        // console.log(auxUser)
+
+        if(auxUser.password) {
+            auxUser.password = bcrypt.hashSync((auxUser.password).toString(), 8); // encrypts the password
+        }
+
+        try{
+            const updatedUser = await repository.createQueryBuilder("users")
+            .update(User)
+            .set(auxUser)
+            .where("id = :id", { id })
+            .execute();
+  
+            // console.log('UPDATE: ', updatedUser);
+
+            return res.json({ message: 'User Updated!' });
+
+        }catch(err) {
+            /*const { name, message } = err;
+            console.log({ name, message })*/
+            
+            return res.status(400).send({ error: err.message });
+        }
     }
 
     static async verifyUserExists(
