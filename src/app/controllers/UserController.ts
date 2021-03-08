@@ -10,16 +10,14 @@ class UserController {
     }
 
     async listAll(req: Request, res: Response) { // list all users
-        const repository = getRepository(User);
 
-        const list = await repository.find();
-
-        const newList = list.map((user) => {
-            const auxUser: UserInterface = user;
-            delete auxUser.password; // not to send the password to the frontend
-
-            return auxUser;
-        })
+        const list = await getRepository(User)
+            .createQueryBuilder("users")
+            .select([
+                "id",
+                "email"
+            ]) // without password
+            .getRawMany();
 
         return res.send({ listUsers: list });
     }
