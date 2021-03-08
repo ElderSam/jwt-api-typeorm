@@ -77,6 +77,16 @@ class UserController {
         }
     }
 
+    async delete(req: Request, res: Response) { // delete user
+        const id = req.userId;
+
+        const repositoty = getRepository(User);
+        const deleteRes = await repositoty.delete(id)
+        // console.log(deleteRes)
+
+        return res.send({ deleted: Boolean(deleteRes.affected), id })
+    }
+
     static async verifyUserExists(
         repository: Repository<User>, email: string, name: string
     ) { // // implementation of the Singleton design pattern

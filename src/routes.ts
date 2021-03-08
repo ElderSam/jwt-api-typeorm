@@ -22,4 +22,6 @@ router.get('/exampleAuthenticatedRoute', authMiddleware, UserController.index);
 // Update User
 router.put('/users', authMiddleware, UserController.update);
 
+router.delete('/users', authMiddleware, UserController.delete);
+
 export default router;
