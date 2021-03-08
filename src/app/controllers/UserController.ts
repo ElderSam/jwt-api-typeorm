@@ -48,12 +48,16 @@ class UserController {
 
         let message = 'There is already a user with this ';
 
-        let userExists = await repository.findOne({ where: { email } });
+        let userExists = await repository.createQueryBuilder("users")
+            .where("LOWER(email) = LOWER(:email)", { email })
+            .getOne();
 
         if(userExists) 
             return { message: message += 'Email' }
 
-        userExists = await repository.findOne({ where: { name } })
+        userExists = await repository.createQueryBuilder("users")
+            .where("LOWER(name) = LOWER(:name)", { name })
+            .getOne();
 
         if(userExists)
             return { message: message += 'Name' }
