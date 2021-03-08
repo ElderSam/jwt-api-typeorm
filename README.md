@@ -1,39 +1,42 @@
-# JWT Authentication API with TypeScript e TypeORM
+# 📝 JWT Authentication API with TypeScript e TypeORM
 
-## 1. Install dependencies
+
+## Initialization 🚀
+
+## 1️⃣ Install dependencies
 $ yarn
 
-## 2. Configure Database and the `ormconfig.json`
-create a database in Postgres and udpate the `ormconfig.json` file if necessary
+## 2️⃣ Configure Database and the `ormconfig.json`
+create a database in Postgres and udpate the <code>`ormconfig.json`</code> file if necessary
 
-## 3. Run Migrations (Create tables)
+## 3️⃣ Run Migrations (Create tables)
 $ yarn typeorm migration:run
 
-## 4. Configure the Enviroment Variables;
+## 4️⃣ Configure the Enviroment Variables;
 Create a `.env` file in the root folder and set the PORT and JWT_SECRET, for example;
     PORT=3000
     JWT_SECRET=mysecret74598
 
-## 5. Start the Server
+## 5️⃣ Start the Server
 $ yarn dev
 
------------------
-## API Rotes
-host: http://localhost:3000
+-----------------------------------------------------
+## 🚚 API Rotes 
+host: <code>http://localhost:3000</code>
 
 You can use the Insomnia to see the routes.
 Open Insomnia, and import the file in `/api_documentation` folder
 
 ### USERS;
-    Create: /users (POST)
+*``Create: /users (POST)``*
 
-    Authenticate: /auth (POST)
+*``Authenticate: /auth (POST)``*
 
-    List: /users (GET)
+*``List: /users (GET)``*
 
 
 ------------------
-# Tools and Libraries used:
+# 📚 Tools and Libraries used:
 
 **body-parser**
 Parses the client's request from JSON into Javascript objects
@@ -71,3 +74,8 @@ https://typeorm.io/#/select-query-builder/how-to-create-and-use-a-querybuilder
 
 **reflect-metadata**
 allow some annotations features used with TypeORM
+
+
+---------------------
+## Links Úteis:
+😉 Emojis: https://emojipedia.org/check-mark/
