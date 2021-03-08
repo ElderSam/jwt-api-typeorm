@@ -15,22 +15,26 @@ export default function authMiddleware(
     const { authorization } = req.headers;
 
     if(!authorization) {
-        return res.sendStatus(401);
+        return res.status(401).send({ error: 'No token provided' });
     }
 
-    const token = authorization.replace('Bearer', '').trim();
+    const parts = authorization.split(' ');
 
-    try {
-        const data = jwt.verify(token, SECRET);
-        //console.log(data)
+    if(parts.length !== 2)
+        return res.status(401).send({ error: 'Token error' });
 
-        const { id } = data as TokenPayload;
+    let [ scheme, token ] = parts;
 
-        req.userId = id;
+    if(!/^Bearer$/i.test(scheme))
+        return res.status(401).send({ error: 'Token malformated' });
+
+    jwt.verify(token, SECRET, (err, decoded) => {
+
+        if(err) return res.status(401).send({ error: 'Token invalid' });
+
+        const { id } = decoded as TokenPayload;
+        req.userId = id; // id will be used in any Controller function that is authenticated
 
         return next();
-
-    } catch {
-        return res.sendStatus(401);
-    }
+    });
 }
