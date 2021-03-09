@@ -1,7 +1,17 @@
-interface UserInterface {
+interface UserReturn {
     id: string,
+    name: string,
     email: string,
     password?: string; // the password can be `undefined`
 }
 
-export default UserInterface;
+interface UserToInsert {
+    name: string,
+    email: string,
+    password: string
+}
+
+export {
+    UserReturn,
+    UserToInsert
+};
