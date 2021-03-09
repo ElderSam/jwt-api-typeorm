@@ -56,7 +56,8 @@ Docs: https://jestjs.io/docs/en/getting-started.html
 ``$ yarn add jest -D``
 
 2. Follow the tutorials:
-Configure to Typescript: https://sharklabs.com.br/testes-unitarios-com-nodejs-jest-typescript/
+Configure to Typescript & TypeORM: https://dev.to/caiulucas/tests-with-jest-and-typeorm-4j1l
+OR Configure to Typescript: https://sharklabs.com.br/testes-unitarios-com-nodejs-jest-typescript/
 
 3. create config files:
 ``$ npx ts-jest config:init``
