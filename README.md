@@ -20,6 +20,10 @@ Create a `.env` file in the root folder and set the PORT and JWT_SECRET, for exa
 ## 5️⃣ Start the Server
 $ yarn dev
 
+----------------------
+## Run Tests
+$ yarn test
+
 -----------------------------------------------------
 ## 🚚 API Rotes 
 host: <code>http://localhost:3000</code>
@@ -35,8 +39,27 @@ Open Insomnia, and import the file in `/api_documentation` folder
 *``List: /users (GET)``*
 
 
-------------------
+-----------------------------------------------------
 # 📚 Tools and Libraries used:
+
+**Jest**
+Jest is a JavaScript testing framework
+Docs: https://jestjs.io/docs/en/getting-started.html
+
+1. Install Jest:
+``$ yarn add jest -D``
+
+2. create config files:
+``$ yarn jest --init``
+
+3. Set the ``jest.config.js`` file;
+
+	bail: true,
+    ...
+	testMatch: [
+		"**/__tests__/**/*.test.ts?(x)"
+	],
+--------
 
 **body-parser**
 Parses the client's request from JSON into Javascript objects
