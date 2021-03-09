@@ -7,7 +7,7 @@
 $ yarn
 
 ## 2️⃣ Configure Database and the `ormconfig.json`
-create a database in Postgres and udpate the <code>`ormconfig.json`</code> file if necessary
+create a database in Postgres and udpate the <code>`ormconfig.ts`</code> file if necessary
 
 ## 3️⃣ Run Migrations (Create tables)
 $ yarn typeorm migration:run
@@ -23,6 +23,12 @@ $ yarn dev
 ----------------------
 ## Run Tests
 $ yarn test
+
+OBS: In ``package.json`` file the script for ``Windows``;
+    ``"test": "SET NODE_ENV=test & jest"``
+
+    If you are running in ``Linux/Mac``, you need to set;
+    ``"test": "NODE_ENV=test jest"``
 
 -----------------------------------------------------
 ## 🚚 API Rotes 
@@ -49,16 +55,12 @@ Docs: https://jestjs.io/docs/en/getting-started.html
 1. Install Jest:
 ``$ yarn add jest -D``
 
-2. create config files:
-``$ yarn jest --init``
+2. Follow the tutorials:
+Configure to Typescript: https://sharklabs.com.br/testes-unitarios-com-nodejs-jest-typescript/
 
-3. Set the ``jest.config.js`` file;
+3. create config files:
+``$ npx ts-jest config:init``
 
-	bail: true,
-    ...
-	testMatch: [
-		"**/__tests__/**/*.test.ts?(x)"
-	],
 --------
 
 **body-parser**
