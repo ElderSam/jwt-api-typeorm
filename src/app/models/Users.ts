@@ -20,9 +20,20 @@ export default class User {
     password: string;
 
     @BeforeInsert()
+    hashPassword1() {
+        this.password = User.hashPass(this.password);
+    }
+
     @BeforeUpdate()
-    hashPassword() {
-        this.password = bcrypt.hashSync(this.password, 8); // encrypts the password
+    hashPassword2() {
+        console.log('password: ', this.password)
+
+        if(this.password)
+            this.password = User.hashPass(this.password);
+    }
+
+    static hashPass(password: string) {
+        return bcrypt.hashSync(password, 8); // encrypts the password
     }
 
     static async list() {

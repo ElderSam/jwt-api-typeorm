@@ -25,10 +25,29 @@ $ yarn dev
 $ yarn test
 
 OBS: In ``package.json`` file the script for ``Windows``;
-    ``"test": "SET NODE_ENV=test & jest"``
+    ``"test": "SET NODE_ENV=test& jest"``
 
     If you are running in ``Linux/Mac``, you need to set;
     ``"test": "NODE_ENV=test jest"``
+
+### To prevent PostgreSQL ERRORS, you must enter in PostgreSQL admin; 
+1. To create a user with permissions, run the SQL;
+<code>CREATE ROLE test WITH
+        LOGIN
+        SUPERUSER
+        CREATEDB
+        CREATEROLE
+        INHERIT
+        NOREPLICATION
+        CONNECTION LIMIT -1
+        PASSWORD 'xxxxxx';</code>
+
+2. Create a Database;
+<code>CREATE DATABASE "DB_test"
+        WITH 
+        OWNER = test
+        ENCODING = 'UTF8'
+        CONNECTION LIMIT = -1;</code>
 
 -----------------------------------------------------
 ## 🚚 API Rotes 
@@ -91,6 +110,7 @@ To start the server manually when has Connection Error:
 To manipulate database
 Documentation: https://typeorm.io/#/
 https://typeorm.io/#/select-query-builder/how-to-create-and-use-a-querybuilder
+Migrations: https://wanago.io/2019/01/28/typeorm-migrations-postgres/
 
     how to create migrations:
     $ yarn typeorm migration:create -n <MIGRATION_NAME> //example of migration name: CreateUsersTable

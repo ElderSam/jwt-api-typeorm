@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import bcrypt from 'bcryptjs';
 
 import { UserReturn } from './../utils/UserInterface';
 import User from '../models/Users';
@@ -41,10 +40,6 @@ class UserController {
         const id = req.userId;
         const auxUser = req.query;
         // console.log(auxUser)
-
-        if(auxUser.password) {
-            auxUser.password = bcrypt.hashSync((auxUser.password).toString(), 8); // encrypts the password
-        }
 
         try{
             const updatedUser = await User.update(id, auxUser);

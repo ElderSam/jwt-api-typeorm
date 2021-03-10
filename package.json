@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "npx nodemon --exec ts-node --files src/index.ts --ignore __tests__",
-    "typeorm": "npx ts-node ./node_modules/typeorm/cli.js",
+    "typeorm:cli": "npx ts-node ./node_modules/typeorm/cli.js",
+    "pretest": "SET NODE_ENV=test& yarn typeorm:cli migration:run",
     "test": "SET NODE_ENV=test& jest"
   },
   "devDependencies": {
