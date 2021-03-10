@@ -16,15 +16,21 @@ class UserController {
     }
 
     async store(req: Request, res: Response) { // create new user
-        const { name, email, password } = req.body;
+        const user = req.body;
 
-        const userExists = await UserController.verifyUserExists(email, name);
+        const invalidFields = UserController.verifyFields(user);
+
+        if(invalidFields.error)
+            return res.status(400).send({ invalidFields }); // bad request
+
+
+        const userExists = await UserController.verifyUserExists(user.email, user.name);
 
         if(userExists) {
             return res.status(400).send({ error: userExists }); // bad request
         }
 
-        const newUser = await User.insert({ name, email, password });
+        const newUser = await User.insert(user);
 
         const auxUser: UserReturn = newUser;
         delete auxUser.password; // not to send the password to the frontend
@@ -79,7 +85,7 @@ class UserController {
             let userExists = await this.searchUserByColumn(column, value);
 
             if(userExists) {
-                return { column: message + fistLetterToUpper(column) }
+                return (message + fistLetterToUpper(column))
                 break;
             }
         }
@@ -95,6 +101,36 @@ class UserController {
         }
 
         return false;
+    }
+
+    static verifyFields(user: any) {
+        let error = false;
+        const incorrectFields = Array();
+
+        try {
+            const requiredFields = [ 'name', 'email', 'password' ];
+
+            requiredFields.forEach((field, index) => {
+
+                if((user[field] === undefined) || (user[field] === '')) {
+
+                    if(!error)
+                        error = true;
+
+                    incorrectFields.push(field)
+                }
+            })
+
+        }catch {
+            error = true;
+        }
+
+        if(error) {
+            return { error, incorrectFields }
+
+        }else {
+            return { error }
+        }
     }
 }
 
