@@ -7,7 +7,7 @@
     "dev": "npx nodemon --exec ts-node --files src/index.ts --ignore __tests__",
     "typeorm:cli": "npx ts-node ./node_modules/typeorm/cli.js",
     "pretest": "SET NODE_ENV=test& yarn typeorm:cli migration:run",
-    "test": "SET NODE_ENV=test& jest"
+    "test": "SET NODE_ENV=test& jest --verbose"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",

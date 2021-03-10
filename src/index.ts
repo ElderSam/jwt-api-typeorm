@@ -2,7 +2,7 @@
 const app = require('./server');
 import connection from './database/connect';
 
-connection.create();
+connection.create().then(() => console.log('✔️  Successfully connected with database'));
 
 const PORT = process.env.PORT || 3000;
 

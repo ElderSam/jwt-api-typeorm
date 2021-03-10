@@ -4,7 +4,6 @@ require("dotenv").config({
 
 import connection from '../../src/database/connect';
 import User from '../../src/app/models/Users';
-import UserController from '../../src/app/controllers/UserController';
 import { UserToInsert } from "../../src/app/utils/UserInterface";
 import bcrypt from 'bcryptjs';
 

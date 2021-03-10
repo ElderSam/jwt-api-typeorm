@@ -2,7 +2,7 @@ import { createConnection, getConnection } from 'typeorm';
 
 const connection = {
     async create(){
-        await createConnection().then(() => console.log('✔️  Successfully connected with database'));
+        await createConnection();
     },
   
     async close(){
